@@ -1,37 +1,59 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, Github, Linkedin } from "lucide-react";
+import * as React from "react"
 
-export default function ContactPage() {
+import { Button } from "@/components/ui/button"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
+export function CardWithForm() {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-6">
-      <div className="max-w-2xl w-full">
-        <h1 className="text-4xl font-bold mb-4">Let's Connect</h1>
-        <p className="text-gray-400 mb-6">
-          If you’d like to work together or just want to say hi, drop me a
-          message!
-        </p>
-
-        <form className="space-y-4">
-          <Input type="text" placeholder="Your Name" className="bg-gray-800" />
-          <Input type="email" placeholder="Your Email" className="bg-gray-800" />
-          <Textarea placeholder="Your Message" className="bg-gray-800" />
-          <Button className="w-full bg-blue-600 hover:bg-blue-500">Send</Button>
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>Create project</CardTitle>
+        <CardDescription>Deploy your new project in one-click.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="name">Name</Label>
+              <Input id="name" placeholder="Name of your project" />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="framework">Framework</Label>
+              <Select>
+                <SelectTrigger id="framework">
+                  <SelectValue placeholder="Select" />
+                </SelectTrigger>
+                <SelectContent position="popper">
+                  <SelectItem value="next">Next.js</SelectItem>
+                  <SelectItem value="sveltekit">SvelteKit</SelectItem>
+                  <SelectItem value="astro">Astro</SelectItem>
+                  <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
         </form>
-
-        <div className="flex justify-center space-x-6 mt-6">
-          <a href="mailto:hello@example.com" className="hover:text-blue-400">
-            <Mail size={24} />
-          </a>
-          <a href="https://github.com" className="hover:text-blue-400">
-            <Github size={24} />
-          </a>
-          <a href="https://linkedin.com" className="hover:text-blue-400">
-            <Linkedin size={24} />
-          </a>
-        </div>
-      </div>
-    </div>
-  );
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <Button variant="outline">Cancel</Button>
+        <Button>Deploy</Button>
+      </CardFooter>
+    </Card>
+  )
 }
